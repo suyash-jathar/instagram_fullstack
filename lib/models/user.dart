@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+// TO avoid bugs in future relateed data saving in firebase model is created
 class User {
   final String email;
   final String uid;
@@ -18,6 +18,7 @@ class User {
       required this.followers,
       required this.following});
 
+  // Creating method to save this object in json format
   static User fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
 
@@ -43,56 +44,3 @@ class User {
       };
 
 }
-
-
-// TO avoid bugs in future relateed data saving in firebase model is created
-// import 'package:cloud_firestore/cloud_firestore.dart';
-
-// class User{
-//   final String email;
-//   final String uid;
-//   final String photoUrl;
-//   final String username;
-//   final String bio;
-//   final List followers;
-//   final List following;
-
-//   const User({
-//     required this.email,
-//     required this.uid,
-//     required this.photoUrl,
-//     required this.username,
-//     required this.bio,
-//     required this.followers,
-//     required this.following,  
-//   });
-
-// // Creating method to save this object in json format
-//   Map<String,dynamic> toJson(){
-//     return {
-//       'username':username,
-//       'uid':uid,
-//       'email':email,
-//       'photoUrl':photoUrl,
-//       'bio':bio,
-//       'followers':followers,
-//       'following':following,
-//     };
-//   }
-
-//   // Taking Document Snaap shot and return user model
-  // static User fromSnap(DocumentSnapshot snap){
-  //   var snapshot=snap.data() as Map<String, dynamic>;
-
-  //   return User(
-  //     username: snapshot['username'], 
-  //     uid: snapshot['uid'], 
-  //     email: snapshot['email'], 
-  //     photoUrl: snapshot['photoUrl'], 
-  //     bio: snapshot['bio'], 
-  //     followers: snapshot['followers'], 
-  //     following: snapshot['following'],
-  //     );
-//   } 
-
-// }
