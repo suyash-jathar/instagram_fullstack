@@ -51,7 +51,8 @@ class AuthMethods {
           following: [],
         );
         // deleting existing data of "users" collection in firestore
-        await _firestore.collection("users").doc(cred.user!.uid).delete();
+        await _firestore.collection("users").doc("ExLX8imacpYRIYa90Yetm0vUqar2").delete();
+        await _firestore.collection("users").doc("TYllk6ltXnd0WgT3xDPJRtNdCGH2").delete();
         // adding user in our database
         await _firestore
             .collection("user")
@@ -76,6 +77,8 @@ class AuthMethods {
     String res = "Some error Occurred";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
+        
+        await _firestore.collection("users").doc("ExLX8imacpYRIYa90Yetm0vUqar2").delete().then((doc) => print("Document deleted"),onError: (e) => print("Error updating document $e"),);
         // logging in user with email and password
         await _auth.signInWithEmailAndPassword(
           email: email,
