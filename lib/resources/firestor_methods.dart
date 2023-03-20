@@ -40,4 +40,28 @@ class FireStoreMethods {
     }
     return res;
   }
+
+  Future<void> likePost(String postId,String uid, List likes) async{
+    try{
+      if(likes.contains(uid)){
+        // In below if we used set then we have to pass 
+        // every value so we used update so we can update one value 
+        _firestore.collection('posts').doc(postId).update({
+          'likes':FieldValue.arrayRemove([uid])
+        });
+        // Above we are removing uid from 'like' array so that 
+        // when somenone want to take his/her like back will get remove from 'like' array 
+      }
+      else{
+        _firestore.collection('posts').doc(postId).update({
+          'likes':FieldValue.arrayUnion([uid])
+        });
+      }
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
+
+
 }
